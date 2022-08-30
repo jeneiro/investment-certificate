@@ -2,3 +2,6 @@ body {
   background-image: url("background-image.jpg");
   background-color: red;
 }
+
+
+.topics tr { line-height: 20px; }
