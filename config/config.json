@@ -1,0 +1,25 @@
+{
+    "development": {
+      "username": "root",
+      "password": "password",
+      "database": "test_server",
+       "host": "127.0.0.1",
+      "dialect": "mysql"
+    },
+    "test": {
+      "username": "root",
+      "password": "gims",
+      "database": "database_test",
+      "host": "10.10.10.95",
+      "dialect": "mysql"
+    },
+    "production": {
+      "username": "root",
+      "password": "gims",
+      "database": "database_production",
+      "host": "10.10.10.95",
+      "dialect": "mysql"
+    }
+  }
+  
+  
