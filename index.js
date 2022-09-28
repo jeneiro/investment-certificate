@@ -22,6 +22,8 @@ db.sequelize.sync().then((req)=>{
 
 
 app.use('/PDFRouter', require("./routers/PDFRouter"));
+app.use('/signature', require("./routers/signatureRouter"));
+app.use('/investments', require("./routers/investmentRoutes"));
 
 
 

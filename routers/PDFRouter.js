@@ -1,5 +1,6 @@
 const router = require("express").Router();
 const PDFcontroller = require("../controllers/PDFcontroller")
 
-router.get("/",PDFcontroller.createPDF);
+router.post("/",PDFcontroller.createPDF);
+router.get("/view",PDFcontroller.viewPDF);
 module.exports = router;
