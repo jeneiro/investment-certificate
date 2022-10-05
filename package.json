@@ -17,9 +17,11 @@
     "fs-extra": "^10.1.0",
     "handlebars": "^4.7.7",
     "mysql2": "^2.3.3",
+    "nodemailer": "^6.8.0",
     "nodemon": "^2.0.19",
     "puppeteer": "^16.2.0",
     "sequelize": "^6.21.4",
-    "tedious": "^15.1.0"
+    "tedious": "^15.1.0",
+    "to-words": "^3.3.0"
   }
 }
