@@ -1,7 +1,6 @@
 const { Auth } = require("../models");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-
 //add user
 const register = async (req, res, next) => {
   try {
@@ -28,7 +27,7 @@ const register = async (req, res, next) => {
     if (existingUser) {
       return res
         .status(400)
-        .json({ errorMessage: "Account with this email exist" });
+        .json({ errorMessage: "Account with this email already exist" });
     }
   
     //hash password
@@ -40,7 +39,6 @@ const register = async (req, res, next) => {
     // const newUser = new Auth();
     const saveuser = await Auth.create({
       email: email,
-     
       passwordharsh: passwordHash,
       isAdmin: isAdmin,
     });
@@ -59,6 +57,7 @@ const register = async (req, res, next) => {
 
     return res.status(200).json(userPayload);
   } catch (err) {
+    console.log(err)
     res.status(500).send(err);
   }
 };

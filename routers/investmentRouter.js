@@ -1,7 +1,8 @@
 const router  = require('express').Router();
-const investmentController = require('../controllers/investmentController')
+const investmentController = require('../controllers/investmentController');
+const authMiddleware = require('../middleware/auth');
 
-router.get('/', investmentController.investment)
+router.get('/', authMiddleware, investmentController.investment)
 
 
 module.exports = router

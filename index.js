@@ -25,6 +25,7 @@ app.use('/PDFRouter', require("./routers/PDFRouter"));
 app.use('/signature', require("./routers/signatureRouter"));
 app.use('/investments', require("./routers/investmentRouter"));
 app.use('/email', require("./routers/emailRouter"));
+app.use('/auth', require("./routers/authRouter"))
 
 
 
