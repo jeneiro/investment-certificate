@@ -9,8 +9,10 @@ const sendEmail =async (req, res)=>{
         //mail Client
         const id = req.params.id;
         let { title, message, email, investor, account } = req.body;
-        const procedureQuery = `exec proc_update_investment_certificates_log_status_to_sent @account_no=${account}`;
         
+        const procedureQuery = `exec proc_update_investment_certificates_log_status_to_sent @account_no='${account}'`;
+        console.log(procedureQuery);
+        const proc           ="exec proc_update_investment_certificates_log_status_to_sent @account_no='0000019917'"
         
          await db.sequelize.query(procedureQuery)
         var filepath = path.join(__dirname, `../PDFfiles/output${id}.pdf`);

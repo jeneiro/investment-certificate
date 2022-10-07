@@ -3,6 +3,7 @@ const hbs = require("handlebars");
 const fs = require("fs-extra");
 const path = require("path");
 const { ToWords } = require("to-words");
+const {TandC} =require("../models")
 //const data = require("./data.json");
 
 //currency Formatter in words
@@ -33,6 +34,11 @@ const splitAddress = (address) => {
   var address2 = address.split(" ").splice(6).join(" ");
   return { address1, address2 };
 };
+const splitTandC = (address) => {
+  var one = address.split(" ").splice(0, 13).join(" ");
+  var two = address.split(" ").splice(13).join(" ");
+  return { one, two };
+};
 const splitCurrencyWords = (currencyWords) => {
   var currency1 = currencyWords.split(" ").splice(0, 6).join(" ");
   var currency2 = currencyWords.split(" ").splice(6).join(" ");
@@ -61,6 +67,9 @@ const compile = async (templateName, data) => {
     .toString("base64");
 
   const addresses = splitAddress(data.address);
+  const tandc1 = splitTandC(data.tandc1);
+  const tandc2 = splitTandC(data.tandc2);
+  const tandc3 = splitTandC(data.tandc3);
   let amountWords = splitCurrencyWords(toWords.convert(data.amountNum, { currency: true }));
   let netMaturityWords = splitCurrencyWords(toWords.convert(data.netMaturityValueNum, {
     currency: true,
@@ -75,6 +84,12 @@ const compile = async (templateName, data) => {
   data.signature2 = signature2;
   data.address1 = addresses.address1;
   data.address2 = addresses.address2;
+  data.tandc1One = tandc1.one;
+  data.tandc1two = tandc1.two;
+  data.tandc2One = tandc2.one;
+  data.tandc2two = tandc2.two;
+  data.tandc3One = tandc3.one;
+  data.tandc3two = tandc3.two;
   //get html
 
   const html = await fs.readFile(filePath, "utf8");
@@ -84,6 +99,12 @@ const compile = async (templateName, data) => {
 const createPDF = async (req, res) => {
   try {
     const data = req.body;
+    const tandc = await TandC.findAll();
+    data.tandc1 = tandc[0].dataValues.item
+    data.tandc2 = tandc[1].dataValues.item
+    data.tandc3 = tandc[2].dataValues.item
+    
+    
     const browser = await puppeteer.launch({
       args: ["--allow-file-access-from-files", "--enable-local-file-accesses"],
     });

@@ -1,5 +1,4 @@
 const fs = require("fs-extra");
-
 const getSignature = async (req, res) => {
   try {
     var signature = fs.readFileSync(`./public/signature1.png`);
